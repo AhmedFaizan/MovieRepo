@@ -1,0 +1,32 @@
+<h2>My Movies</h2>
+<!-- movie add -->
+<div>
+  <label>Movie name:</label> <input #movieName />
+  <button (click)="add(movieName.value); movieName.value=''">
+    Add
+  </button>
+</div>
+<!-- movie add -->
+<!--I CHNAGED THIS AREA TO EDIT IMAGES DISLAYED -->
+<ul class="movies"><!--CCHANGED THE CSS CLASS FROM HERO TO MOVIE CLASS -->
+<li *ngFor="let movie of movies"
+[class.selected]="movie === selectedMovie"
+ (click)="onSelect(movie)"> <!-- CHHANGED REFERENCING TAGS FROM HERO TO MOVIE -->
+
+<div class="movieDescription">
+<span class="badge">{{movie.id}}</span> <span>{{movie.name}}</span><span></span>
+  <!-- each movie goes here -->
+  <button class="delete" (click)="delete(movie); $event.stopPropagation()">x</button>
+  </div>
+  <div class="movieImage"><!--ENTERED A DIV TO DISPLAY IMAGE -->
+    <img class="movieDisplayImage"[src]="movie.picSrc"><!-- RETRIEVED SOURCE FROM THE MOVIE OBJECT IN THE IN-MEMORY-DATA-SERVICE-->
+  </div><!--CLOSED IMAGE DIV -->
+</li>
+</ul><!--cLOSED THE DIV THAT IS REPEATED -->
+
+<div *ngIf="selectedMovie">
+<h2>
+  {{selectedMovie.name | uppercase}} is my movie
+</h2>
+<button (click)="gotoDetail()">View Details</button>
+</div>

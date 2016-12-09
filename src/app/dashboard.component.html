@@ -1,0 +1,17 @@
+<h3>Top Movies</h3>
+<div class="ContainerSearchBarFloatRight">
+<div class="SearchBarFloatRight">
+
+</div>
+</div>
+<div class="grid grid-pad">
+  <div *ngFor="let movie of movies" (click)="gotoDetail(movie)" class="col-1-4">
+    <div class="module movie">
+      <h4>{{movie.name}}</h4>
+    </div>
+    <div class="moduleImage">
+    <img class="movieDisplayImageForDashBoard"[src]="movie.picSrc">
+    </div>
+  </div>
+</div>
+<movie-search></movie-search>
